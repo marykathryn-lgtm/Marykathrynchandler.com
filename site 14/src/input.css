@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem; /* keep anchored content clear of the sticky header */
+  }
+  body {
+    background-color: #fcf9f8;
+    color: #1b1c1c;
+    font-family: theme('fontFamily.body-md');
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid #8d4f11;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Icon font (Material Symbols Outlined is loaded from Google Fonts) */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+
+  /* "Thick and thin" double rule used for major section breaks */
+  .editorial-divider,
+  .editorial-rule {
+    height: 4px;
+    border-top: 3px solid #685d4c;
+    border-bottom: 1px solid #685d4c;
+    margin: 2rem 0;
+  }
+
+  /* Cards lift slightly on hover; depth comes from an ultra-diffused ambient shadow */
+  .card-hover-effect,
+  .gallery-card {
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .card-hover-effect:hover,
+  .gallery-card:hover {
+    transform: translateY(-4px);
+  }
+  .card-hover-effect:hover {
+    box-shadow: 0 40px 80px -20px rgba(38, 38, 38, 0.05);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+    background: #262626;
+    color: #fcf9f8;
+    font-family: theme('fontFamily.label-md');
+    font-size: 14px;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+}
+
+/* Scroll reveal: only applied when JS is running, so the page is fully readable without it */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .card-hover-effect,
+  .gallery-card {
+    transition: none;
+  }
+  .card-hover-effect:hover,
+  .gallery-card:hover {
+    transform: none;
+  }
+}
+@media print {
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "mary-kathryn-chandler-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static portfolio site for Mary Kathryn Chandler",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./assets/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./assets/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
